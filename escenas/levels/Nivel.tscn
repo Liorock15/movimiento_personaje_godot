@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://vsekcd817kce"]
+
+[ext_resource type="PackedScene" uid="uid://b78jvec7klac" path="res://escenas/plataforma.tscn" id="1_327eb"]
+[ext_resource type="PackedScene" uid="uid://dhs4ytpnrel1t" path="res://escenas/cubes/cube.tscn" id="2_yen48"]
+[ext_resource type="PackedScene" uid="uid://dfbia1wcmr5g2" path="res://animacion xd/player.tscn" id="3_s7ocs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m4yk2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_y28yi"]
+sky_material = SubResource("ProceduralSkyMaterial_m4yk2")
+
+[sub_resource type="Environment" id="Environment_argq5"]
+background_mode = 2
+sky = SubResource("Sky_y28yi")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Nivel" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386566, -0.258696, 0.133891)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.834848, -0.47673, 0.27524, 0, 0.5, 0.866025, -0.550481, 0.723, -0.417424, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_argq5")
+
+[node name="plataforma" parent="." instance=ExtResource("1_327eb")]
+transform = Transform3D(50, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="cube" parent="." instance=ExtResource("2_yen48")]
+transform = Transform3D(0.681982, -0.340038, -0.647514, 0.317763, 0.935177, -0.156426, 0.658731, -0.0990773, 0.745827, 0.467485, 1.68597, -0.0819175)
+
+[node name="cube2" parent="." instance=ExtResource("2_yen48")]
+transform = Transform3D(1.62501, -0.351454, -2.49716, -1.98164, -2.01526, -1.00591, -1.55963, 2.19436, -1.32375, 22.7496, 5.19348, -20.8835)
+
+[node name="cube3" parent="." instance=ExtResource("2_yen48")]
+transform = Transform3D(1.62501, -0.351454, -2.49716, -1.98164, -2.01526, -1.00591, -1.55963, 2.19436, -1.32375, -21.1373, 6.15869, 20.128)
+
+[node name="cube4" parent="." instance=ExtResource("2_yen48")]
+transform = Transform3D(2.54727, 1.51833, -0.453988, -1.54924, 2.20488, -1.31847, -0.333628, 1.35394, 2.65622, 23.9231, 4.32596, 19.2313)
+
+[node name="cube5" parent="." instance=ExtResource("2_yen48")]
+transform = Transform3D(1.62501, -0.351454, -2.49716, -1.98164, -2.01526, -1.00591, -1.55963, 2.19436, -1.32375, -20.6792, 4.97948, -22.1267)
+
+[node name="player" parent="." instance=ExtResource("3_s7ocs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.316743, 1.93947)

@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8632dm0n2a0j"]
+
+[ext_resource type="Script" path="res://escenas/player/player.gd" id="1_vg16q"]
+[ext_resource type="PackedScene" uid="uid://dsxllkxvvvseb" path="res://escenas/interaction/PlayerInteractor.tscn" id="2_xj82u"]
+[ext_resource type="PackedScene" uid="uid://dyd4ueg0esiwj" path="res://escenas/player/hud/pointer.tscn" id="3_you01"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jwedq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ed8bv"]
+sky_material = SubResource("ProceduralSkyMaterial_jwedq")
+
+[sub_resource type="Environment" id="Environment_datpd"]
+background_mode = 2
+sky = SubResource("Sky_ed8bv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_phgwa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t4n4v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pa8ym"]
+size = Vector3(0.78623, 2.59493, 7.13607)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_vg16q")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_datpd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_phgwa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_t4n4v")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424304, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
+
+[node name="PlayerInteractor" parent="Neck" node_paths=PackedStringArray("player") instance=ExtResource("2_xj82u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.424304, 0)
+player = NodePath("../..")
+
+[node name="CollisionShape3D" parent="Neck/PlayerInteractor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.93405)
+shape = SubResource("BoxShape3D_pa8ym")
+
+[node name="Hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pointer" parent="Hud" instance=ExtResource("3_you01")]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 323.0
+offset_right = 1067.0
+offset_bottom = 835.0
+scale = Vector2(0.0945963, 0.0945963)
+
+[editable path="Neck/PlayerInteractor"]

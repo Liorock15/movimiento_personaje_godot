@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm3w7lga7xhtj"]
+
+[ext_resource type="PackedScene" uid="uid://d2wsyfy4uk5g0" path="res://animacion xd/Standard Walk.dae" id="1_gf4sf"]
+[ext_resource type="Script" path="res://Script/player.gd" id="1_jfjgb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_be0pp"]
+height = 2.10886
+radius = 0.451195
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_jfjgb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128901, 0.783484, -0.18005)
+shape = SubResource("CylinderShape3D_be0pp")
+
+[node name="visual" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.283459, -0.0758814, -0.163228)
+
+[node name="Standard Walk" parent="visual" instance=ExtResource("1_gf4sf")]
+transform = Transform3D(-0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, -0.984808, -0.129073, -0.195758, 0.0415474)
+
+[node name="camara" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27635, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camara"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.698276, 0.289373, 1.4829)
+fov = 79.2313
